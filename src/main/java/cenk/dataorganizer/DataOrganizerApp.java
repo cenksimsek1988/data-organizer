@@ -15,9 +15,9 @@ import cenk.dataorganizer.service.DataOrganizer;
 public class DataOrganizerApp {
 	private static final Logger logger = LoggerFactory.getLogger(DataOrganizerApp.class);
 	@Autowired
-	private DataOrganizer organizer;
-	@Autowired
 	private DataFetcher fetcher;
+	@Autowired
+	private DataOrganizer organizer;
 
     public static void main(String[] args) {
 		SpringApplication.run(DataOrganizerApp.class,args);
@@ -26,7 +26,7 @@ public class DataOrganizerApp {
 	@PostConstruct
 	private void start(){
 		try {
-			fetcher.fetch();
+//			fetcher.fetch();
 			organizer.organize();
 		} catch (Exception e) {
 			logger.error(e.getMessage());

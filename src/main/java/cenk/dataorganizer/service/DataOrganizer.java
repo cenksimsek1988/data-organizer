@@ -6,27 +6,26 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import java.util.TreeMap;
+import java.util.UUID;
 
+import org.apache.commons.codec.DecoderException;
+import org.apache.commons.codec.binary.Hex;
 import org.apache.logging.log4j.util.Strings;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
-import org.apache.poi.poifs.filesystem.POIFSFileSystem;
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.CellType;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
-import org.apache.poi.ss.usermodel.WorkbookFactory;
-import org.apache.poi.util.StringUtil;
 import org.apache.poi.xssf.usermodel.XSSFCell;
 import org.apache.poi.xssf.usermodel.XSSFRow;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
-import org.omg.CORBA.DoubleSeqHelper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
@@ -45,17 +44,17 @@ public class DataOrganizer {
 	private static final Object LOCK = new Object();
 	@Value("${dataorganizer.adjusted.data.folder.path:adjusted}")
 	private String adjustedDataFolderPath;
-	
+
 	@Value("${dataorganizer.raw.data.folder.path:raw}")
 	private String rawDataFolderPath;
-	
+
 	@Value("${dataorganizer.adjusting.map.folder.path:map}")
 	private String adjustingMapFolderPath;
 
 	private static final Logger logger = LoggerFactory.getLogger(DataOrganizer.class);
-	
+
 	private final static String ADJUSTED_FILE_NAME = "Adjusted";
-	
+
 	public void organize() throws Exception {
 		logger.info("given path for raw data folder: {}", rawDataFolderPath);
 		final Set<File> rawDataFiles;
@@ -79,7 +78,7 @@ public class DataOrganizer {
 		if (!mapFile.exists() ) {
 			throw new Exception("There is no map file at path " + mapFile);
 		}
-		final Workbook wb = readRawDataFile(mapFile);
+		final Workbook wb = readExcelFile(mapFile);
 		final Sheet sh = wb.getSheetAt(0);
 		if(sh==null) {
 			throw new DOSheetNotFoundException("cannot find any sheet in workbook with name: " + mapFile.getName());
@@ -91,26 +90,45 @@ public class DataOrganizer {
 		TreeMap<Integer, TreeMap<Integer, String>> answer = new TreeMap<>();
 		int rowStart = sh.getFirstRowNum();
 		int rowEnd = sh.getLastRowNum();
-		for(int i = rowStart; i < rowEnd; i++) {
+		Iterator<Row> rIterator = sh.rowIterator();
+		while(rIterator.hasNext()) {
 			TreeMap<Integer, String> mapOfRow = new TreeMap<>();
-			Row row = sh.getRow(i);
-			int cellStart = row.getFirstCellNum();
-			int cellEnd = row.getLastCellNum();
-			for(int j = cellStart; j < cellEnd; j++) {
-				Cell cell = row.getCell(j);
-				if(cell!=null) {
-					if(cell.getCellType()==CellType.STRING){
-						String val = cell.getStringCellValue();
-						if(!Strings.isBlank(val)) {
-							mapOfRow.put(j, val.trim());
-						}
+			Row row = rIterator.next();
+			int i = row.getRowNum();
+			Iterator<Cell> cIterator = row.cellIterator();
+			while(cIterator.hasNext()) {
+				Cell cell = cIterator.next();
+				int j = cell.getColumnIndex();
+				if(cell.getCellType()==CellType.STRING){
+					String val = cell.getStringCellValue();
+					if(!Strings.isBlank(val)) {
+						mapOfRow.put(j, val.trim());
 					}
-					
 				}
 			}
 			answer.put(i, mapOfRow);
 		}
 		return answer;
+//		for(int i = rowStart; i <= rowEnd; i++) {
+//			TreeMap<Integer, String> mapOfRow = new TreeMap<>();
+//			Row row = sh.getRow(i);
+//			int cellStart = row.getFirstCellNum();
+//			int cellEnd = row.getLastCellNum();
+//			for(int j = cellStart; j < cellEnd; j++) {
+//				Cell cell = row.getCell(j);
+//				if(cell!=null) {
+//					if(cell.getCellType()==CellType.STRING){
+//						String val = cell.getStringCellValue();
+//						if(!Strings.isBlank(val)) {
+//							mapOfRow.put(j, val.trim());
+//						}
+//					}
+//
+//				}
+//			}
+//			answer.put(i, mapOfRow);
+//		}
+//		return answer;
 	}
 
 	private static void write(String fileName, XSSFWorkbook workbook) throws DOException {
@@ -209,7 +227,7 @@ public class DataOrganizer {
 		if (!rawDataFile.exists() ) {
 			throw new Exception("There is no raw data at path " + rawDataFile);
 		}
-		final Workbook wb = readRawDataFile(rawDataFile);
+		final Workbook wb = adjustHeaderAndReadExcelFile(rawDataFile);
 		final Sheet sh = wb.getSheetAt(0);
 		if(sh==null) {
 			throw new DOSheetNotFoundException("cannot find any sheet in workbook with name: " + rawDataFile.getName());
@@ -246,12 +264,39 @@ public class DataOrganizer {
 		return answerBuilder.build();
 	}
 
-	private static Workbook readRawDataFile(File rawDataFile) throws Exception {
+	private static byte[] EXCEL_HEADER;
+
+	static {
+		try {
+			EXCEL_HEADER = Hex.decodeHex("E11AB1A1E011CFD0");
+		} catch (DecoderException e) {
+			e.printStackTrace();
+		}
+	}
+
+	public static Workbook adjustHeaderAndReadExcelFile(File rawDataFile) throws Exception {
+		File tmpFile = new File(rawDataFile.getPath() + rawDataFile.getName() + UUID.randomUUID());
+		FileOutputStream out = new FileOutputStream(tmpFile);
+		out.write(EXCEL_HEADER);
+		out.write(System.getProperty("line.separator").getBytes("utf-8")[0]);
+		FileInputStream originalStream= new FileInputStream(rawDataFile);
+		int b=0;
+		while(b!=-1) {
+			b = originalStream.read();
+			out.write(b);
+		}
+		originalStream.close();
+		out.flush();
+		out.close();
+		return readExcelFile(tmpFile);
+//		return readExcelFile(rawDataFile);
+	}
+
+	private static Workbook readExcelFile(File file) throws Exception {
 		synchronized (LOCK) {
-			FileInputStream stream= new FileInputStream(rawDataFile);
+			FileInputStream stream= new FileInputStream(file);
 			try {
-	            POIFSFileSystem fs = new POIFSFileSystem(stream);
-	            return new HSSFWorkbook(fs);
+				return new HSSFWorkbook(stream);
 			} catch (IOException e) {
 				logger.error("cannot create excel workbook from input stream. bad formed file");
 				e.printStackTrace();
@@ -259,5 +304,5 @@ public class DataOrganizer {
 			}
 		}
 	}
-	
+
 }

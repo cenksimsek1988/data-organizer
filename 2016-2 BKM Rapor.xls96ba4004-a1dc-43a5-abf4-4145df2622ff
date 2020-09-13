@@ -1,0 +1,362 @@
+á±¡àÏÐ                <style>
+           body{
+	text-align:center;
+}
+
+#anaKapsul{
+	margin:0 auto;
+	width:100%;
+}
+
+#anaKapsul p{
+	margin:0;
+}
+
+h1{
+	font:bold 14px 'AvenirNext', Tahoma, Geneva, sans-serif;
+	color: #8f8f8f;
+	margin:0;
+	padding:0;
+}
+
+select{
+	font:11px 'AvenirNext', Tahoma, Geneva, sans-serif;
+}
+
+table{
+	width:100%;
+	font: 12px 'AvenirNext', Tahoma, Geneva, sans-serif;
+	color:#000;
+	border-bottom: 3px solid #ccc;
+}
+
+table th{
+    border: 1px solid #ccc;
+    padding: 14px !important;
+    text-align: center;
+    font: 14px "AvenirNext",Tahoma,Geneva,sans-serif;
+}
+
+
+
+table tr.odd{
+	background-color:#FFF;
+
+	border-bottom: 1px solid #ccc;
+}
+
+
+
+a{
+	color:#878582;
+	font:11px 'AvenirNext', Tahoma, Geneva, sans-serif;
+}
+
+/* cercevesi tablo */
+
+table.bos{
+	border:none;
+}
+
+table.bos td, table.bos th{
+	border:none;
+}
+
+table.bos table td {
+    border: 1px solid #ccc;
+
+}
+
+table td .buton{
+	background: #ff6b3a;
+	font: bold 10px 'AvenirNext', Tahoma, Geneva, sans-serif-webkit-body;
+	border:none;
+	color:#fff;
+    cursor:hand;
+    cursor: pointer;
+	width: 100px;
+	height: 30px;
+	border-radius: 10px;
+	vertical-align: top;
+	font-size: 12px;
+}
+
+td.excel a{
+	text-decoration:none;
+	font-size: 14px;
+	line-height: 18px;
+}
+
+
+table td {
+    border: 1px solid #ccc;
+    padding: 14px !important;
+    text-align: center;
+    font: 12px "AvenirNext",Tahoma,Geneva,sans-serif;
+    white-space: nowrap;
+}
+
+.main_title {
+    color: #FFF;
+    background-color: #8F8F8F;
+    text-align: center;
+    padding: 14px;
+    vertical-align: middle;
+    font-weight:bold;
+}
+
+.sub_title {
+    background-color: #afafaf;
+    color: white;
+    text-align: center;
+    vertical-align: middle;
+		font-weight: bold;
+}
+
+.sub_sub_title {
+    background-color: #F6F6F6;
+    color: #717170;
+    text-align: left;
+    vertical-align: middle;
+		font-weight: bold;
+}
+
+.content_middle {
+    background-color: #FFF;
+    color: #000;
+    text-align: center;
+}
+
+.content_left {
+    background-color: #FFF;
+    color: #000;
+    text-align: left;
+}
+
+.empty_cell {
+    border: none;
+}
+
+table.bos table td.excel {
+    border:none;
+}
+
+table tr.yil td {
+	background: none repeat scroll 0 0 #8f8f8f;
+    color: #FFFFFF;
+    font-weight:bold;
+}
+.donem .sub_sub_title {
+    background-color: #f0f0f0;
+    color: #9E0E23;
+    font-weight: bold;
+}
+.donem .content_left {
+   background-color: #f0f0f0;
+    color: #9E0E23;
+    font-weight:bold;
+}
+            table td {
+                border: 1px solid #ccc;
+                padding: 14px !important;
+                text-align: center;
+                font: 11px "AvenirNext",Tahoma,Geneva,sans-serif;
+            }
+        </style>
+    
+    </head>
+    <body>
+        <div id="anaKapsul">
+                                    <p>
+            <table width="735" align="center" cellpadding="0" cellspacing="0" class="bos">
+                <tr>
+                    <td style="text-align:left !important;">
+                        Ortalama Dolar Kuru: <b>2,9432</b>
+                    </td>
+                </tr>
+            </table>
+        </p>
+        <table width="600" border="0" cellpadding="0" cellspacing="0" class="bos">
+            <tr>
+                <td valign="top">
+                    <table  border="0" cellspacing="0" cellpadding="0" width="210">
+                        <tr valign="bottom" >
+                            <td colspan="2"  align="center" class="main_title">KART SAYILARI</td>
+                        </tr>
+                        <tr>
+                            <td  class="sub_sub_title">Toplam Kredi Kart&#305;</td>
+                            <td class="content_left">58.434.657</td>
+                        </tr>
+                        <tr>
+                            <td class="sub_sub_title">Toplam Banka Kart&#305;</td>
+                            <td class="content_left">111.844.131</td>
+                        </tr>
+                    </table>
+                </td>
+                <td></td>
+                <td valign="top">
+                    <table  border="0" cellspacing="0" cellpadding="0" width="230">
+                        <colgroup>
+                            <col class="birinciKolon" />
+                            <col class="ikinciKolon" />
+                        </colgroup>
+                        <tr valign="bottom" >
+                            <td colspan="2"  align="center" class="main_title">POS SAYILARI</td>
+                        </tr>
+                        <tr>
+                            <td class="sub_sub_title">POS Say&#305;s&#305;</td>
+                            <td class="content_left">2.017.237</td>
+                        </tr>
+                    </table>
+                </td>
+                <td>&nbsp;</td>
+                <td valign="top">
+                    <table  border="0" cellspacing="0" cellpadding="0" width="200">
+                        <tr valign="bottom" >
+                            <td colspan="2"  align="center" class="main_title">ATM SAYILARI</td>
+                        </tr>
+                        <tr>
+                            <td class="sub_sub_title">ATM Say&#305;s&#305;</td>
+                            <td class="content_left">48.535</td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+        </table>
+        <br />
+        <!--/atm, post, kart say&#305;lar&#305; biti&#351; -->
+        <table border="0" cellpadding="0" cellspacing="0">
+            <tr valign="bottom" >
+                <td colspan="2" rowspan="3" class="empty_cell"></td>
+                <td colspan="6" class="main_title">&#304;&#350;LEM ADET VE TUTARLARI</td>
+            </tr>
+            <tr valign="bottom">
+                <td colspan="3" class="sub_title">&#304;&#351;lem Adedi</td>
+                <td colspan="3" class="sub_title">&#304;&#351;lem Tutar&#305;<font style="font-size:10px">(Milyon TL)</font></td>
+            </tr>
+            <tr valign="bottom" >
+                <td class="sub_sub_title">Al&#305;&#351;veri&#351;</td>
+                <td class="sub_sub_title">Nakit &Ccedil;ekme</td>
+                <td class="sub_sub_title">Toplam</td>
+                <td class="sub_sub_title">Al&#305;&#351;veri&#351;</td>
+                <td class="sub_sub_title">Nakit &Ccedil;ekme</td>
+                <td class="sub_sub_title">Toplam</td>
+            </tr>
+            <tr>
+                <td rowspan="5" class="main_title">Kredi Kart&#305;</td>
+                <td width="32%" class="sub_sub_title" >Yerli Kartlar&#305;n Yurt &#304;&ccedil;i Kullan&#305;m&#305;</td>
+                <td class="content_left" >237.987.802</td>
+                <td class="content_left">7.461.114</td>
+                <td class="content_left">245.448.916</td>
+                <td class="content_left">38.897,30</td>
+                <td class="content_left">4.996,45</td>
+                <td class="content_left">43.893,75</td>
+            </tr>
+            <tr>
+                <td class="sub_sub_title" >Yerli Kartlar&#305;n Yurtd&#305;&#351;&#305; Kullan&#305;m&#305;</td>
+                <td class="content_left">5.281.006</td>
+                <td class="content_left">53.615</td>
+                <td class="content_left">5.334.621</td>
+                <td class="content_left">1.037,66</td>
+                <td class="content_left">30,59</td>
+                <td class="content_left">1.068,25</td>
+            </tr>
+            <tr>
+                <td class="sub_sub_title" >Yabanc&#305; Kartlar&#305;n Yurt &#304;&ccedil;i Kullan&#305;m&#305;</td>
+                <td class="content_left">1.218.168</td>
+                <td class="content_left">367.901</td>
+                <td class="content_left">1.586.069</td>
+                <td class="content_left">679,14</td>
+                <td class="content_left">174,88</td>
+                <td class="content_left">854,02</td>
+            </tr>
+            <tr>
+                <td class="sub_sub_title" >Yerli Kartlar&#305;n Yurt &#304;&ccedil;i ve Yurtd&#305;&#351;&#305; Kullan&#305;m&#305;</td>
+                <td class="content_left" >243.268.808</td>
+                <td class="content_left">7.514.729</td>
+                <td class="content_left">250.783.537</td>
+                <td class="content_left">39.934,96</td>
+                <td class="content_left">5.027,04</td>
+                <td class="content_left">44.962,00</td>
+            </tr>
+            <tr>
+                <td class="sub_sub_title" >Yerli ve Yabanc&#305; Kartlar&#305;n Yurt &#304;&ccedil;i Kullan&#305;m&#305;</td>
+                <td class="content_left" >239.205.970</td>
+                <td class="content_left">7.829.015</td>
+                <td class="content_left">247.034.985</td>
+                <td class="content_left">39.576,44</td>
+                <td class="content_left">5.171,33</td>
+                <td class="content_left">44.747,77</td>
+            </tr>
+            <tr>
+                <td rowspan="5" class="main_title">Banka Kart&#305;</td>
+                <td class="sub_sub_title" >Yerli Kartlar&#305;n Yurt &#304;&ccedil;i Kullan&#305;m&#305;</td>
+                <td class="content_left" >77.763.213</td>
+                <td class="content_left">91.275.788</td>
+                <td class="content_left">169.039.001</td>
+                <td class="content_left">3.435,52</td>
+                <td class="content_left">40.201,73</td>
+                <td class="content_left">43.637,24</td>
+            </tr>
+            <tr>
+                <td class="sub_sub_title" >Yerli Kartlar&#305;n Yurtd&#305;&#351;&#305; Kullan&#305;m&#305;</td>
+                <td class="content_left">606.167</td>
+                <td class="content_left">258.928</td>
+                <td class="content_left">865.095</td>
+                <td class="content_left">46,73</td>
+                <td class="content_left">105,93</td>
+                <td class="content_left">152,66</td>
+            </tr>
+            <tr>
+                <td class="sub_sub_title">Yabanc&#305; Kartlar&#305;n Yurt &#304;&ccedil;i Kullan&#305;m&#305;</td>
+                <td class="content_left">1.127.790</td>
+                <td class="content_left">581.102</td>
+                <td class="content_left">1.708.892</td>
+                <td class="content_left">279,02</td>
+                <td class="content_left">293,50</td>
+                <td class="content_left">572,52</td>
+            </tr>
+            <tr>
+                <td class="sub_sub_title" >Yerli Kartlar&#305;n Yurt &#304;&ccedil;i ve Yurtd&#305;&#351;&#305; Kullan&#305;m&#305;</td>
+                <td class="content_left" >78.369.380</td>
+                <td class="content_left">91.534.716</td>
+                <td class="content_left">169.904.096</td>
+                <td class="content_left">3.482,25</td>
+                <td class="content_left">40.307,65</td>
+                <td class="content_left">43.789,91</td>
+            </tr>
+            <tr>
+                <td class="sub_sub_title" >Yerli ve Yabanc&#305; Kartlar&#305;n Yurt &#304;&ccedil;i Kullan&#305;m&#305;</td>
+                <td class="content_left" >78.891.003</td>
+                <td class="content_left">91.856.890</td>
+                <td class="content_left">170.747.893</td>
+                <td class="content_left">3.714,54</td>
+                <td class="content_left">40.495,23</td>
+                <td class="content_left">44.209,76</td>
+            </tr>
+        </table>
+        <br />
+        <!--/Kredi kart&#305;, banka kart&#305; tablo sonu -->
+        <table  border="0" cellpadding="0" cellspacing="0">
+            <tr>
+                <td colspan="2" rowspan="2" class="empty_cell"></td>
+                <td colspan="2" class="main_title">&#304;&#350;LEM ADET VE TUTARLARI</td>
+            </tr>
+            <tr>
+                <td class="sub_sub_title">&#304;&#351;lem Adedi</td>
+                <td class="sub_sub_title">&#304;&#351;lem Tutar&#305;<font style="font-size:10px">(Milyon TL)</font></td>
+            </tr>
+            <tr>
+                <td rowspan="2" class="main_title">Sanal POS &#304;&#351;lemleri</td>
+                <td class="sub_sub_title" >&#304;nternetten Kartl&#305; &Ouml;demeler</td>
+                <td class="content_left" >20.901.519&nbsp;</td>
+                <td class="content_left">4.938,91&nbsp;</td>
+            </tr>
+            <tr>
+                <td class="sub_sub_title" >Mektup / Telefonla Yap&#305;lan Kartl&#305; &Ouml;demeler</td>
+                <td class="content_left" >7.995.398</td>
+                <td class="content_left">3.289,39</td>
+            </tr>
+        </table>
+                
+ÿ
